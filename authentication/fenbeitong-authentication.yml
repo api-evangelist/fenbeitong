@@ -1,0 +1,66 @@
+generated: '2026-07-19'
+method: searched
+source: http://docs.open.fenbeitong.com/open-api/2apijie-ru/23-jian-quan-jie-kou-ff0c-ban-fa-token.html
+docs: http://docs.open.fenbeitong.com/open-api/1.fenbeitong-introduction.html
+summary:
+  model: app-credentials + bearer-token + request-signature
+  types:
+  - token
+  - signature
+  api_key_in:
+  - body
+  oauth2_flows: []
+  notes: >-
+    Fenbeitong Open Platform (开放平台) is NOT OAuth2. Access is granted to
+    enterprises that have a business relationship with Fenbeitong. Onboarding
+    issues three credentials — app_id (企业ID), app_key (企业key), and sign_key
+    (issued but NEVER transmitted, used only to compute the request signature).
+schemes:
+- name: TokenDispense
+  type: token
+  description: >-
+    Exchange app_id + app_key for a short-lived JWT access_token. Token is
+    valid for 2 hours; re-request on expiry.
+  request:
+    method: POST
+    path: /open/api/auth/v1/dispense
+    content_type: application/x-www-form-urlencoded
+    parameters:
+    - name: app_id
+      required: true
+      description: Enterprise ID (企业ID)
+    - name: app_key
+      required: true
+      description: Enterprise key (企业key)
+    - name: app_type
+      required: false
+      description: Reserved field (预留字段)
+  response_envelope:
+    request_id: correlation id
+    code: 0 = success
+    msg: status message
+    data.access_token: JWT bearer token (JWT HS256), 2-hour TTL
+  token_format: JWT (alg HS256)
+  token_ttl_seconds: 7200
+- name: RequestSignature
+  type: signature
+  description: >-
+    Business requests are signed with an MD5-hex signature over the timestamp,
+    the JSON request body (data), and the enterprise sign_key. The sign_key is
+    a shared secret that participates in the signature but is never sent on the
+    wire.
+  algorithm: md5-hex
+  signed_string_template: timestamp={timestamp}&data={jsonData}&sign_key={signKey}
+  parameters:
+  - name: timestamp
+    description: 13-digit epoch-millis timestamp
+  - name: data
+    description: JSON business payload
+  - name: sign_key
+    description: Enterprise-issued shared secret; not transmitted
+  reference_impl: org.apache.commons.codec.digest.DigestUtils.md5Hex(bytes)
+environments:
+- name: production
+  host: https://open.fenbeitong.com
+- name: sandbox
+  host: https://open-sandbox.fenbeitong.com
