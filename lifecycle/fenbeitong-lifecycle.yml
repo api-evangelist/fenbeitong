@@ -1,0 +1,29 @@
+generated: '2026-07-19'
+method: searched
+source: http://docs.open.fenbeitong.com/open-api/1.fenbeitong-introduction.html
+type: Lifecycle
+versioning:
+  scheme: uri-path
+  example: /open/api/auth/v1/dispense
+  doc_versioning:
+    present: true
+    chinese: 文档版本说明
+    url: http://docs.open.fenbeitong.com/open-api/1.fenbeitong-introduction/12-wen-dang-ban-ben-shuo-ming.html
+  cadence: '持续更新 (continuously updated)'
+environments:
+  production: https://open.fenbeitong.com
+  sandbox: https://open-sandbox.fenbeitong.com
+tokens:
+  access_token_ttl_seconds: 7200
+  policy: JWT access_token expires after 2 hours; re-request on expiry.
+deprecation:
+  policy_documented: false
+sla:
+  documented: false
+status_page:
+  found: false
+notes: >-
+  The Open Platform docs carry a document-versioning section and a
+  continuously-updated cadence, but publish no formal deprecation policy,
+  Sunset/Deprecation header support, SLA, or public status page — so no
+  StatusPage or Deprecation pointer is emitted (no fabrication).

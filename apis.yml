@@ -1,8 +1,28 @@
 aid: fenbeitong
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/fenbeitong.png
 name: Fenbeitong
-description: 'Fenbeitong is a company surfaced as a portfolio company of ribbit-capital and added to the
-  API Evangelist network as a stub for enrichment. Sector: fintech. This profile is a lead awaiting the
-  enrichment pipeline.'
+description: >-
+  Fenbeitong (分贝通) is a Beijing-based enterprise expenditure and spend
+  management platform that unifies corporate travel (flights, rail, hotel,
+  ride-hailing), dining, takeout, procurement, budgeting, reimbursement and
+  payment into a single SaaS-plus-payment system for over 4,000 companies. Its
+  Open Platform (开放平台) exposes a token- and signature-authenticated REST API
+  that lets partnered enterprises integrate organization structure, orders,
+  approvals, budgets and billing, and receive real-time order events via
+  webhooks. Founded in 2016 and backed by Ribbit Capital and DST Global, the
+  company operates production and sandbox API environments.
 url: https://raw.githubusercontent.com/api-evangelist/fenbeitong/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -12,11 +32,38 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - Fintech
-apis: []
+- Spend Management
+- Expense Management
+- Corporate Travel
+- Payments
+- Procurement
+- China
+apis:
+- name: Fenbeitong Open Platform
+  description: >-
+    Token- and signature-authenticated REST API for enterprises to integrate
+    Fenbeitong organization structure, orders (flights, car, train, hotel,
+    dining, takeout, procurement), approvals, budgets and billing, with
+    real-time order webhooks.
+  humanURL: http://docs.open.fenbeitong.com/open-api/1.fenbeitong-introduction.html
+  baseURL: https://open.fenbeitong.com
+  tags:
+  - Spend Management
+  - Corporate Travel
+  - Payments
+  properties:
+  - type: Documentation
+    url: http://docs.open.fenbeitong.com/open-api/1.fenbeitong-introduction.html
+  - type: APIReference
+    url: http://docs.open.fenbeitong.com/open-api/2apijie-ru.html
+  - type: Authentication
+    url: authentication/fenbeitong-authentication.yml
+  - type: Webhooks
+    url: asyncapi/fenbeitong-webhooks.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +72,44 @@ maintainers:
 common:
 - type: Website
   url: https://www.fenbeitong.com
+- type: DeveloperPortal
+  url: http://docs.open.fenbeitong.com/open-api/1.fenbeitong-introduction.html
+- type: Documentation
+  url: http://docs.open.fenbeitong.com/open-api/1.fenbeitong-introduction.html
+- type: APIReference
+  url: http://docs.open.fenbeitong.com/open-api/2apijie-ru.html
+- type: GettingStarted
+  url: http://docs.open.fenbeitong.com/open-api/1.fenbeitong-introduction/11join-introduction.html
+- type: Support
+  url: https://www.fenbeitong.com/service.php
+- type: SignUp
+  url: https://www.fenbeitong.com/apply.html
+- type: PrivacyPolicy
+  url: https://static.fenbeitong.com/agreement.html
+- type: TermsOfService
+  url: https://www.fenbeitong.com/level-agreement-6c73c91144ec5aa632b25bedb4e657c4.html
+- type: Authentication
+  url: authentication/fenbeitong-authentication.yml
+- type: Conventions
+  url: conventions/fenbeitong-conventions.yml
+- type: Webhooks
+  url: asyncapi/fenbeitong-webhooks.yml
+- type: ErrorCatalog
+  url: errors/fenbeitong-error-codes.yml
+- type: Sandbox
+  url: sandbox/fenbeitong-sandbox.yml
+- type: Lifecycle
+  url: lifecycle/fenbeitong-lifecycle.yml
+- type: DomainSecurity
+  url: security/fenbeitong-domain-security.yml
+- type: TrustCenter
+  url: security/fenbeitong-trust-center.yml
+- type: Compliance
+  url: security/fenbeitong-trust-center.yml
+- type: LLMsTxt
+  url: llms/fenbeitong-llms.txt
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

@@ -1,0 +1,62 @@
+generated: '2026-07-19'
+method: searched
+source: http://docs.open.fenbeitong.com/open-api/4-zhuang-tai-ma.html
+docs: http://docs.open.fenbeitong.com/open-api/1.fenbeitong-introduction.html
+type: ErrorCatalog
+format: envelope-code
+envelope:
+  shape: '{ request_id, code, msg, data }'
+  success_code: 0
+  code_field: code
+  message_field: msg
+  correlation_field: request_id
+  notes: >-
+    API-level outcome is signalled by the integer `code` in the response
+    envelope (0 = success, non-zero = failure) with a human-readable `msg`.
+    Fenbeitong does not use RFC 9457 application/problem+json; errors ride the
+    JSON envelope. Beyond the envelope, each product surfaces its own
+    order-lifecycle status-code registry (状态码) — captured below.
+status_code_registry:
+  description: >-
+    Per-product status/state code tables published under section 4 (状态码).
+    These are order-lifecycle and business states, not HTTP errors.
+  domains:
+  - domain: flights (机票)
+    tables:
+    - 机票订单状态码表 (flight order status)
+    - 机票状态码表 (flight status)
+    url: http://docs.open.fenbeitong.com/open-api/4zhuang-tai-ma/41-ji-piao-zhuang-tai-ma.html
+  - domain: car (用车)
+    url: http://docs.open.fenbeitong.com/open-api/4zhuang-tai-ma/42-yong-che-zhuang-tai-ma.html
+  - domain: train (火车)
+    url: http://docs.open.fenbeitong.com/open-api/4zhuang-tai-ma/43-huo-che-zhuang-tai-ma.html
+  - domain: hotel (酒店)
+  - domain: insurance (保险)
+  - domain: org-structure (组织架构)
+  - domain: dining (用餐)
+  - domain: procurement (采购)
+  - domain: takeout (外卖)
+sample_codes:
+  domain: flights — 机票订单状态码表 (flight order status)
+  source: http://docs.open.fenbeitong.com/open-api/4zhuang-tai-ma/41-ji-piao-zhuang-tai-ma/411-ji-piao-ding-dan-zhuang-tai-ma-biao.html
+  codes:
+  - code: 1100
+    meaning: 待支付 (awaiting payment)
+  - code: 1211
+    meaning: 已取消 (cancelled)
+  - code: 1400
+    meaning: 已关闭 (closed)
+  - code: 1700
+    meaning: 出票中 (ticketing in progress)
+  - code: 1800
+    meaning: 出票成功 (ticketed / issued)
+  - code: 1801
+    meaning: 出票失败 (ticketing failed)
+  - code: 1811
+    meaning: 退票成功 (refund succeeded)
+  - code: 1820
+    meaning: 改签中 (rebooking in progress)
+  - code: 1821
+    meaning: 改签成功 (rebooking succeeded)
+  - code: 1900
+    meaning: 有退改签 (has refund/change)

@@ -1,0 +1,28 @@
+generated: '2026-07-19'
+method: searched
+source: http://docs.open.fenbeitong.com/open-api/1.fenbeitong-introduction/11join-introduction/110-jie-kou-huan-jing-shuo-ming.html
+type: Sandbox
+summary: >-
+  Fenbeitong Open Platform publishes a distinct sandbox (沙箱) environment
+  separate from production, plus a sandbox enterprise admin backend for
+  configuring the integration (including webhook callback URLs).
+environments:
+- name: sandbox
+  chinese: 沙箱环境
+  host: https://open-sandbox.fenbeitong.com
+  purpose: API integration testing
+- name: sandbox-admin-backend
+  chinese: 沙箱环境企业后台
+  host: https://fbt-test.fenbeijinfu.com
+  purpose: Enterprise admin console for sandbox (configure callbacks, credentials)
+- name: production
+  chinese: 生产环境
+  host: https://open.fenbeitong.com
+credentials:
+  model: >-
+    Onboarding provisions per-enterprise app_id, app_key and sign_key for the
+    environment. Fenbeitong does not publish shared/magic test credentials or
+    test cards — access requires a business relationship, so no test values are
+    reproduced here (no fabrication).
+notes: >-
+  Test-vs-live separation is by host (open-sandbox vs open), not by key prefix.

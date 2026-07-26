@@ -1,0 +1,53 @@
+generated: '2026-07-19'
+method: searched
+source: http://docs.open.fenbeitong.com/open-api/2apijie-ru/22-apijie-ru-shuo-ming.html
+docs: http://docs.open.fenbeitong.com/open-api/1.fenbeitong-introduction.html
+summary: >-
+  Cross-cutting request/response semantics for the Fenbeitong Open Platform
+  (开放平台) REST API. Captured verbatim from the published integration docs.
+authentication:
+  style: bearer-token + request-signature
+  token: JWT access_token (2h TTL) from POST /open/api/auth/v1/dispense
+  signature: md5-hex(timestamp={ts}&data={json}&sign_key={secret})
+  see: authentication/fenbeitong-authentication.yml
+request:
+  content_type_auth: application/x-www-form-urlencoded
+  content_type_business: application/json
+  timestamp: 13-digit epoch-millis, participates in the signature
+error_envelope:
+  shape: '{ request_id, code, msg, data }'
+  success_code: 0
+  fields:
+    request_id: unique id echoed on every response (request tracing / correlation)
+    code: integer status code; 0 indicates success, non-zero indicates failure
+    msg: human-readable status message (e.g. "success")
+    data: response payload object
+  see: errors/fenbeitong-error-codes.yml
+request_tracing:
+  supported: true
+  field: request_id
+  scope: response body
+  notes: Every response carries a request_id for correlation and support.
+idempotency:
+  documented: false
+  notes: >-
+    The Open Platform docs do not publish an idempotency-key contract. Not
+    emitting an Idempotency pointer (no fabrication).
+pagination:
+  documented: partial
+  notes: >-
+    List endpoints (order lists for flights/car/train/hotel/dining/takeout/
+    procurement) and detail endpoints are paired, but the docs do not publish a
+    single normative pagination parameter contract; page params are per-endpoint.
+versioning:
+  scheme: uri-path
+  example: /open/api/auth/v1/dispense
+  doc_versioning: Documentation carries a version-notes section (文档版本说明).
+webhooks:
+  supported: true
+  transport: HTTP POST callback to an enterprise-configured URL
+  content_type: application/json
+  configured_in: enterprise admin backend (管理后台)
+  see: asyncapi/fenbeitong-webhooks.yml
+rate_limiting:
+  documented: false

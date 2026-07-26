@@ -1,0 +1,35 @@
+generated: '2026-07-19'
+method: searched
+source: http://docs.open.fenbeitong.com/open-api/2apijie-ru/22-apijie-ru-shuo-ming/222-xiao-xi-hui-diao-shuo-ming.html
+docs: http://docs.open.fenbeitong.com/open-api/2apijie-ru/24-xiao-xi-hui-diao.html
+type: Webhooks
+transport:
+  mechanism: HTTP POST callback (消息回调)
+  content_type: application/json
+  delivery: >-
+    Fenbeitong pushes real-time order messages to a callback URL that the
+    enterprise configures in the admin backend (管理后台). One callback URL is
+    registered per enterprise; Fenbeitong POSTs the order event to it.
+  configuration: enterprise admin backend (企业管理后台)
+events:
+- name: flight-order-callback
+  chinese: 机票消息回调
+  domain: flights (机票)
+  source: http://docs.open.fenbeitong.com/open-api/2apijie-ru/24-xiao-xi-hui-diao/241ji-piao-xiao-xi-hui-diao.html
+- name: car-order-callback
+  chinese: 用车消息回调
+  domain: ground transport / ride-hailing (用车)
+  source: http://docs.open.fenbeitong.com/open-api/2apijie-ru/24-xiao-xi-hui-diao/242yong-che-xiao-xi-hui-diao.html
+- name: train-order-callback
+  chinese: 火车消息回调
+  domain: rail (火车)
+  source: http://docs.open.fenbeitong.com/open-api/2apijie-ru/24-xiao-xi-hui-diao/243huo-che-xiao-xi-hui-diao.html
+- name: hotel-order-callback
+  chinese: 酒店消息回调
+  domain: hotel (酒店)
+  source: http://docs.open.fenbeitong.com/open-api/2apijie-ru/24-xiao-xi-hui-diao/244jiu-dian-xiao-xi-hui-diao.html
+notes: >-
+  The provider publishes a webhook/callback surface but no machine-readable
+  AsyncAPI document. This catalog captures the documented order-event callbacks
+  faithfully. Order lifecycle states carried by these events are enumerated in
+  errors/fenbeitong-error-codes.yml (per-product status-code registry).

@@ -1,0 +1,34 @@
+# Fenbeitong (分贝通)
+
+> Fenbeitong is a Beijing-based enterprise expenditure (spend) management platform that unifies corporate travel, ride-hailing, rail, hotel, dining, takeout, procurement, budgeting, reimbursement and payment through one SaaS + payment system. Its Open Platform (开放平台) is a token- and signature-authenticated REST API for enterprises with a business relationship to integrate organization structure, orders, approvals, budgets and billing, with real-time order webhooks.
+
+## Open Platform API
+- [Open Platform docs (GitBook)](http://docs.open.fenbeitong.com/open-api/1.fenbeitong-introduction.html): Introduction, onboarding, environments and full endpoint reference.
+- [Environments](http://docs.open.fenbeitong.com/open-api/1.fenbeitong-introduction/11join-introduction/110-jie-kou-huan-jing-shuo-ming.html): production https://open.fenbeitong.com, sandbox https://open-sandbox.fenbeitong.com.
+- [Token / authentication](http://docs.open.fenbeitong.com/open-api/2apijie-ru/23-jian-quan-jie-kou-ff0c-ban-fa-token.html): POST /open/api/auth/v1/dispense (app_id + app_key) -> 2-hour JWT access_token.
+- [Request signature algorithm](http://docs.open.fenbeitong.com/open-api/2apijie-ru/22-apijie-ru-shuo-ming/221-qian-ming-suan-fa.html): md5-hex(timestamp={ts}&data={json}&sign_key={secret}).
+- [Message callbacks (webhooks)](http://docs.open.fenbeitong.com/open-api/2apijie-ru/24-xiao-xi-hui-diao.html): flight, car, train, hotel order events POSTed to a configured URL.
+
+## Endpoint domains
+- Organization structure (组织架构): employees, departments, travellers, project centers, roles.
+- Flights (机票), Car (用车), Train (火车), Hotel (酒店): order list + order detail.
+- Dining (用餐), Takeout (外卖), Procurement (采购): forward/reverse order list + detail.
+- Approvals (审批单): create/cancel approval, car-request approvals, itinerary changes.
+- Budgets (预算): create/update/query/delete, budget applications, progress.
+- Billing (账单开放): bill numbers, bill detail.
+- Common (公用): city/airport/station lookups, company permissions/rules, custom fields.
+
+## Repository artifacts
+- [apis.yml](https://raw.githubusercontent.com/api-evangelist/fenbeitong/refs/heads/main/apis.yml): APIs.json index.
+- [Authentication](https://raw.githubusercontent.com/api-evangelist/fenbeitong/refs/heads/main/authentication/fenbeitong-authentication.yml)
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/fenbeitong/refs/heads/main/conventions/fenbeitong-conventions.yml)
+- [Webhooks](https://raw.githubusercontent.com/api-evangelist/fenbeitong/refs/heads/main/asyncapi/fenbeitong-webhooks.yml)
+- [Error codes](https://raw.githubusercontent.com/api-evangelist/fenbeitong/refs/heads/main/errors/fenbeitong-error-codes.yml)
+- [Sandbox](https://raw.githubusercontent.com/api-evangelist/fenbeitong/refs/heads/main/sandbox/fenbeitong-sandbox.yml)
+- [Trust center](https://raw.githubusercontent.com/api-evangelist/fenbeitong/refs/heads/main/security/fenbeitong-trust-center.yml)
+
+## Company
+- [Website](https://www.fenbeitong.com)
+- [About](https://www.fenbeitong.com/aboutus.php)
+- [Privacy agreement](https://static.fenbeitong.com/agreement.html)
+- [CSA STAR registry (CSA STAR Level 2)](https://cloudsecurityalliance.org/star/registry/beijing-fenbeitong-technology-co-ltd/services/fenbeitong-enterprise-expenditure-management-platform)
